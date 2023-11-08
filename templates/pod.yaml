@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  {{- with .Values.nodeName }}
+  nodeName: {{ . }}
+  {{- end }}
+  {{- with .Values.nodeSelectors }}
+  nodeSelectors:
+    {{ toYaml . | nindent 4 }}
+  {{- end }}
+  containers:
+    - name: tcp-tunnel
+      image: alpine/socat
+      args:
+        - "-d"
+        - "-d"
+        - tcp-listen:{{ .Values.servicePort }},fork,reuseaddr
+        - tcp-connect:{{ .Values.remotePort.host }}:{{ .Values.remotePort.port }}
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: {{ .Values.servicePort }}
+  restartPolicy: Always

@@ -1,0 +1,5 @@
+name: external-svc
+servicePort: 80
+remotePort:
+  host: localhost
+  port: 80
