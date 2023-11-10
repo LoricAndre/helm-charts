@@ -1,0 +1,41 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      {{- with .Values.nodeName }}
+      nodeName: {{ . }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{ toYaml . | nindent 4 }}
+      {{- end }}
+      containers:
+        - name: tcp-tunnel
+          image: alpine/socat
+          args:
+            - "-d"
+            - "-d"
+            - tcp-listen:{{ .Values.servicePort }},fork,reuseaddr
+            - tcp-connect:{{ .Values.remotePort.host }}:{{ .Values.remotePort.port }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.servicePort }}
+      restartPolicy: Always
