@@ -3,6 +3,16 @@ entries:
   grafana-dashboards:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-11-14T14:33:13.695338273Z"
+    description: A Helm chart for Kubernetes
+    digest: b321a7d05479a0e239b3ca7d81d9993c2f5f3eb6128939d6a8056ac0f423d5cd
+    name: grafana-dashboards
+    type: application
+    urls:
+    - https://github.com/LoricAndre/helm-charts/releases/download/grafana-dashboards-0.1.2/grafana-dashboards-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-11-14T14:30:44.399601641Z"
     description: A Helm chart for Kubernetes
     digest: 424b3fcf66c3bd01e47cddd424c223b6f9cd7b23f93edf39beca8002b338f85b
@@ -42,4 +52,4 @@ entries:
     urls:
     - https://github.com/LoricAndre/simple-external-service/releases/download/simple-external-service-0.1.0/simple-external-service-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-14T14:30:44.399611359Z"
+generated: "2023-11-14T14:33:13.695357974Z"
