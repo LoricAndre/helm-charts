@@ -1,0 +1,4 @@
+dashboardsPath: "./dashboards"
+grafanaFolderFromDir: false
+extraLabels: {}
+extraAnnotations: {}

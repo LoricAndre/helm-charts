@@ -1,0 +1,21 @@
+{{- range $path, $_ := .Files.Glob (printf "%s/**.json" .Values.dashboardsPath) }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashboard-{{ dir $path | base }}-{{ base $path }}
+  labels:
+    grafana_dashboard: "1"
+    {{- with $.Values.extraLabels }}
+    {{ toYaml . | nindent 4 }}
+    {{- end }}
+  annotations:
+    {{- if $.Values.grafanaFolderFromDir }}
+    grafana_folder: {{ dir $path | base | title }}
+    {{- end }}
+    {{- with $.Values.extraAnnotations }}
+    {{ toYaml . | nindent 4 }}
+    {{- end }}
+data:
+{{ ($.Files.Glob $path).AsConfig | indent 2 }}
+---
+{{- end }}
