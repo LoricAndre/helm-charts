@@ -27,6 +27,7 @@ jobs:
       - name: Add logstash-exporter symlink
         run: |
           ln -s $(pwd)/submodules/logstash-exporter/chart ./charts/logstash-exporter
+          ls ./charts/logstash-exporter
 
       - name: Install Helm
         uses: azure/setup-helm@v3
