@@ -28,6 +28,8 @@ jobs:
         run: |
           cp -r $(pwd)/submodules/logstash-exporter/chart ./charts/logstash-exporter
           ls ./charts/logstash-exporter
+          git add ./charts/logstash-exporter
+          git commit -m "add logstash-exporter chart to index"
 
       - name: Install Helm
         uses: azure/setup-helm@v3
