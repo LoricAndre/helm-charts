@@ -24,9 +24,9 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Copy logstash-exporter chart
+      - name: Add logstash-exporter symlink
         run: |
-          cp -r $(pwd)/submodules/logstash-exporter/chart ./charts/logstash-exporter
+          ln -s $(pwd)/submodules/logstash-exporter/chart ./charts/logstash-exporter
           ls ./charts/logstash-exporter
 
       - name: Install Helm
