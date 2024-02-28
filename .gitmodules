@@ -1,3 +1,0 @@
-[submodule "charts/logstash-exporter"]
-	path = charts/logstash-exporter
-	url = git@github.com:kuskoman/logstash-exporter.git
