@@ -1,0 +1,3 @@
+[submodule "submodules/logstash-exporter"]
+	path = submodules/logstash-exporter
+	url = git@github.com:kuskoman/logstash-exporter.git
